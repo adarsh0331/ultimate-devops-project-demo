@@ -252,7 +252,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 
 	// GetProduct will fail on a specific product when feature flag is enabled
 	if p.checkProductFailure(ctx, req.Id) {
-		msg := "Error: Product Catalog Fail Feature Flag Enabled"
+		msg := fmt.Sprintf("Error: Product Catalog Fail Feature Flag Enabled")
 		span.SetStatus(otelcodes.Error, msg)
 		span.AddEvent(msg)
 		return nil, status.Errorf(codes.Internal, msg)
@@ -309,16 +309,13 @@ func (p *productCatalog) checkProductFailure(ctx context.Context, id string) boo
 	return failureEnabled
 }
 
-// Example usage
-func someOtherFunction() {
-    ctx := context.Background()
-    conn, err := createClient(ctx, "some-service-address")
-    if err != nil {
-        log.Fatalf("Failed to create client: %v", err)
-    }
-    defer conn.Close()
-    // Use the connection
+func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error) {
+	return grpc.DialContext(ctx, svcAddr,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
+	)
 }
+
 
 
 
