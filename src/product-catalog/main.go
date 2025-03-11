@@ -309,13 +309,16 @@ func (p *productCatalog) checkProductFailure(ctx context.Context, id string) boo
 	return failureEnabled
 }
 
-func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error) {
-	return grpc.NewClient(svcAddr,
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
-	)
+// Example usage
+func someOtherFunction() {
+    ctx := context.Background()
+    conn, err := createClient(ctx, "some-service-address")
+    if err != nil {
+        log.Fatalf("Failed to create client: %v", err)
+    }
+    defer conn.Close()
+    // Use the connection
 }
-
 
 
 
