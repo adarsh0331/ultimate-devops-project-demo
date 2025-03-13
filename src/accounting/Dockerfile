@@ -4,7 +4,7 @@
 FROM --platform=${BUILDPLATFORM} mcr.microsoft.com/dotnet/sdk:8.0 AS builder
 ARG TARGETARCH
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+WORKDIR /src/accounting
 COPY src/accounting/ Accounting/
 COPY demo.proto Accounting/proto/
 RUN dotnet restore "./Accounting/Accounting.csproj" -r linux-$TARGETARCH
