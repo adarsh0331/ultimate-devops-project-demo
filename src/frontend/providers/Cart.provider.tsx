@@ -10,6 +10,7 @@ import { useCurrency } from './Currency.provider';
 
 interface IContext {
   cart: IProductCart;
+  cartItems: CartItem[]; // Add this
   addItem(item: CartItem): void;
   emptyCart(): void;
   placeOrder(order: PlaceOrderRequest): Promise<OrderResult>;
@@ -70,7 +71,9 @@ const CartProvider = ({ children }: IProps) => {
   );
 
 const value = useMemo(
-  () => ({ cart, cartItems: cart.items, addItem, emptyCart, placeOrder }), [cart, addItem, emptyCart, placeOrder]);
+  () => ({ cart, cartItems: cart.items, addItem, emptyCart, placeOrder }),
+  [cart, addItem, emptyCart, placeOrder]
+);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
