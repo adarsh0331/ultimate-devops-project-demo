@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { CypressFields } from '../../utils/Cypress';
 import { IProductCartItem } from '../../types/Cart';
 import ProductPrice from '../ProductPrice';
@@ -23,14 +23,12 @@ const CartDropdown = ({ productList, isOpen, onClose }: IProps) => {
         onClose();
       }
     };
-    // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref]);
+  }, [onClose]); // ✅ Added `onClose` to the dependency array
 
   return isOpen ? (
     <S.CartDropdown ref={ref} data-cy={CypressFields.CartDropdown}>
