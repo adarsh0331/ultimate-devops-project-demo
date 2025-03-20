@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Link from 'next/link';
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import { CypressFields } from '../../utils/Cypress';
 import { IProductCartItem } from '../../types/Cart';
 import ProductPrice from '../ProductPrice';
