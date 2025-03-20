@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "paths": {
       "@protos/*": ["protos/*"]
-    },  <-- Added missing comma here
+    },  <-- Fixed: Added missing comma
     "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
