@@ -69,7 +69,8 @@ const CartProvider = ({ children }: IProps) => {
     [placeOrderMutation, selectedCurrency]
   );
 
-  const value = useMemo(() => ({ cart, addItem, emptyCart, placeOrder }), [cart, addItem, emptyCart, placeOrder]);
+const value = useMemo(
+  () => ({ cart, cartItems: cart.items, addItem, emptyCart, placeOrder }), [cart, addItem, emptyCart, placeOrder]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
