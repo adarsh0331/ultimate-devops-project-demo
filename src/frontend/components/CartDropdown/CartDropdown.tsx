@@ -28,7 +28,7 @@ const CartDropdown = ({ productList, isOpen, onClose }: IProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [onClose]); // ✅ Added `onClose` to the dependency array
+  }, [ref, onClose]); // ✅ Added `onClose` to the dependency array
 
   return isOpen ? (
     <S.CartDropdown ref={ref} data-cy={CypressFields.CartDropdown}>
