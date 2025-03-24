@@ -18,7 +18,7 @@ COPY ./pb ./pb
 COPY . .
 
 RUN npm run grpc:generate
-RUN npm run build
+RUN sudo npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
