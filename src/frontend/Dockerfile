@@ -9,7 +9,7 @@ RUN npm ci --only=production
 
 # Build stage
 FROM node:20-alpine AS builder
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat protobuf-dev protoc 
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
