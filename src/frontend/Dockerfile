@@ -15,6 +15,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Ensure TypeScript and ESLint dependencies are installed
+RUN npm install --save-dev typescript @types/react eslint
+
 # Generate gRPC files & build project
 RUN npm run grpc:generate
 RUN npm run build
